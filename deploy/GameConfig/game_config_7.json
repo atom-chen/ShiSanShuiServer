@@ -1,0 +1,32 @@
+{
+
+    "__Level":
+	{
+        "level0": 
+		{
+            "ScoreRate": 1,
+            "CoinRate": 1,
+            "CoinFee": 0,
+            "ScoreLow": 0,
+            "ScoreUpper": 9999,
+            "CoinLow": 0,
+            "CoinUpper": 99999
+        },
+        "level10": 
+		{
+            "ScoreRate": 10,
+            "CoinRate": 10,
+            "CoinFee": 100
+        }
+    },
+    "__Rule": 
+	{
+        "default":
+		{
+			"SeatCount":6,
+			"AllowEnterInGame":0
+			
+        }
+    }
+}
+	

@@ -1,0 +1,420 @@
+{
+    "name": "player root",
+    "control_type": "selector",
+    "child": [
+        {
+            "case": "call_ready",
+            "select_type": "event",
+            "name": "dealer ask player ready",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify player can ready",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_ready"
+                },
+                {
+                    "name": "wait player ready",
+                    "control_type": "selector",
+                    "child": [
+                        {
+                            "name": "ready",
+                            "case": "ready",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do player ready",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.do_player_ready"
+                                },
+                                {
+                                    "name": "do player ready",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_all_player_ready"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "timeout",
+                            "case": "timeout",
+                            "select_type": "event",
+                            "control_type": "step",
+                            "do_script": "flow_player.player_ready_timeout"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "case": "call_startgame",
+            "select_type": "event",
+            "name": "case startgame",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify_player_gamestart",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_gamestart"
+                }
+            ]
+        },
+        {
+            "case": "call_xiapao",
+            "select_type": "event",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify player xiapao",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_xiapao"
+                },
+                {
+                    "name": "wait player xiapao",
+                    "control_type": "selector",
+                    "child": [
+                        {
+                            "name": "player xiapao",
+                            "case": "xiapao",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do player xiapao",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.do_player_xiapao"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "timeout",
+                            "case": "timeout",
+                            "select_type": "event",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_xiapao_timeout"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "case": "call_startplay",
+            "select_type": "event",
+            "name": "case startplay",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify_player_playstart",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_playstart"
+                }
+            ]
+        },
+        {
+            "case": "call_givecard",
+            "select_type": "event",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "selector player self can op logic func",
+                    "control_type": "selector",
+                    "select_type": "step_return",
+                    "step_name": "flow_player.check_selfgive_can_block",
+                    "child": [
+                        {
+                            "case": "yes",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "notify_player_op_logic_func",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_player_op_logic_func"
+                                },
+                                {
+                                    "name": "selector player op_logic_func",
+                                    "control_type": "selector",
+                                    "child": [
+                                        {
+                                            "name": "do _quadruplet",
+                                            "case": "quadruplet",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_self_quadruplet"
+                                        },
+                                        {
+                                            "name": "do hu",
+                                            "case": "win",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_self_hu"
+                                        },
+                                        {
+                                            "name": "do play",
+                                            "case": "play",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_play_card"
+                                        },
+                                        {
+                                            "name": "do giveup",
+                                            "case": "giveup",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_self_giveup"
+                                        },
+                                        {
+                                            "name": "do timeout",
+                                            "case": "timeout",
+                                            "select_type": "event",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_op_logic_func_timeout"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "judge_switch_block",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.judge_switch_block"
+                                }
+                            ]
+                        },
+                        {
+                            "case": "no",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "notify_player_play",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_player_play_card"
+                                },
+                                {
+                                    "name": "wait do_player_play_card",
+                                    "control_type": "selector",
+                                    "child": [
+                                        {
+                                            "name": "do play",
+                                            "case": "play",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_play_card"
+                                        },
+                                        {
+                                            "name": "do timeout",
+                                            "case": "timeout",
+                                            "select_type": "event",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_play_timeout"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "case": "call_askplay",
+            "select_type": "event",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify_player_play",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_play_card"
+                },
+                {
+                    "name": "wait do_player_play_card",
+                    "control_type": "selector",
+                    "child": [
+                        {
+                            "name": "do play",
+                            "case": "play",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_play_card"
+                        },
+                        {
+                            "name": "do timeout",
+                            "case": "timeout",
+                            "select_type": "event",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_play_timeout"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "call_other_player_givecard",
+            "case": "call_other_player_givecard",
+            "select_type": "event",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "selector player self can op logic func",
+                    "control_type": "selector",
+                    "select_type": "step_return",
+                    "step_name": "flow_player.check_is_can_do_logic_func",
+                    "child": [
+                        {
+                            "case": "yes",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "notify_do_logic_func",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_player_op_logic_func_other"
+                                },
+                                {
+                                    "name": "do_player_op_logic_func",
+                                    "control_type": "selector",
+                                    "child": [
+                                        {
+                                            "name": "do giveup",
+                                            "case": "giveup",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_giveup"
+                                        },
+                                        {
+                                            "name": "do peng",
+                                            "case": "triplet",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_triplet_other"
+                                        },
+                                        {
+                                            "name": "do_quadruplet",
+                                            "case": "quadruplet",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_quadruplet_other"
+                                        },
+                                        {
+                                            "name": "do hu",
+                                            "case": "win",
+                                            "select_type": "message",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_hu_other"
+                                        },
+                                        {
+                                            "name": "do chi",
+                                            "case": "collect",
+                                            "select_type": "message",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_collect_other"
+                                        },
+                                        {
+                                            "name": "do timeout",
+                                            "case": "timeout",
+                                            "select_type": "message",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_op_other_player_timeout"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "judge_switch_block",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.judge_switch_block"
+                                }
+                            ]
+                        },
+                        {
+                            "case": "no",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_nothing"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "call_other_player_qianggang",
+            "case": "call_other_player_qianggang",
+            "select_type": "event",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "selector player self can op logic func",
+                    "control_type": "selector",
+                    "select_type": "step_return",
+                    "step_name": "flow_player.check_is_can_do_qianggang",
+                    "child": [
+                        {
+                            "case": "yes",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "notify_do_logic_func",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_player_other_op_logic_func"
+                                },
+                                {
+                                    "name": "do_player_op_logic_func",
+                                    "control_type": "selector",
+                                    "child": [
+                                        {
+                                            "name": "do giveup",
+                                            "case": "giveup",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_giveup"
+                                        },
+                                        {
+                                            "name": "do hu",
+                                            "case": "win",
+                                            "select_type": "message",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_player_hu_other"
+                                        },
+                                        {
+                                            "name": "do timeout",
+                                            "case": "timeout",
+                                            "select_type": "message",
+                                            "control_type": "step",
+                                            "do_script": "flow_player.do_op_other_player_timeout"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "judge_switch_block",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.judge_switch_block"
+                                }
+                            ]
+                        },
+                        {
+                            "case": "no",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_nothing"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "call_ask_paymoney",
+            "case": "call_ask_paymoney",
+            "select_type": "event",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify_player_add_money",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_add_money"
+                },
+                {
+                    "name": "selector player waite_add_money",
+                    "control_type": "selector",
+                    "child": [
+                        {
+                            "case": "add_money_end",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_add_money_end"
+                        },
+                        {
+                            "case": "continue_play",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_continue_play"
+                        },
+                        {
+                            "case": "timeout",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_giveup_game"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

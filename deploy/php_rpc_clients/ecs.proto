@@ -1,0 +1,132 @@
+syntax = "proto3";
+
+package ecs;
+
+enum RetCode {
+	E_RET_NONE=0;
+	E_RET_SUCC = 1;
+	E_RET_FAIL = 2;
+	E_RET_NO_DATA = 3;/*服务端没有查到相关数据*/
+	E_RET_REQ_ERR = 4;/*请求信息有错误*/
+	E_RET_ERR  = 5;  /*服务端出错*/
+  }
+
+
+message Head_t {
+	 int32  _gid = 1;/*game id*/
+	 string _gsc = 2;/*game rule*/
+	 string _glv = 3;/*game level*/
+	 int64  _uid = 4;
+
+	 string  billno  = 5;
+	
+}
+
+
+enum ActionType {
+	E_NONE = 0;
+	E_QUERY_AT = 1;
+	E_SET_AT   = 2;
+	E_NO_AT    = 3;
+}
+
+
+
+message Lock_t {
+ 	 LockState ret      = 1;
+	 ActionType action  = 2;
+	 LockOpt     opt    = 3;   
+	 
+	 int64 min_coin     = 4;/*至少保持的金币*/
+	 int64 max_coin     = 5;/*最多保持的金币*/
+	 int32  _gt      = 6;
+	 int32  _chair      = 7;
+	 int64  time        = 8; 
+	 string ext         = 9;
+     string _svr_t  = 10; /*server name*/
+	 int32  _svr_id = 11;
+	 int32 _gid = 12;
+	 string _gsc = 13;
+	 string _glv = 14;
+
+    enum LockOpt{
+		E_LOCK_NONE = 0;
+        E_LOCK_OPT    = 1;
+        E_UNLOCK_OPT  = 2;
+    }
+
+    enum LockState {
+		E_LOCK_STAT_NONE = 0;
+        E_HAVED_LOCK_ST   = 1;//query
+        E_NO_LOCK_ST      = 2;//query
+        E_SUCC_LOCK_ST    = 3;//lock
+        E_FAIL_LOCK_ST    = 4;//lock
+		E_SUCC_UNLOCK_ST  = 5;//unlock
+		E_FAIL_UNLOCK_ST  = 6;//unlock
+        E_ERROR_LOCK_ST   = 7;
+		E_UNKNOWN_LOCK_ST = 8;
+    }
+
+}
+
+message Coin_t {
+	 RetCode ret    = 1;/*参见Ret_Code*/
+	 ActionType action = 2;
+	 int32 opcode   = 3;/*操作码，0-9999给php用，10000以上c++用*/
+	 int32 opcode_sub = 4; /*子操作码，默认为0 */
+	 string desc	= 5; /*操作备注*/
+	 int64 coin     = 6;/*金币数量*/
+	 int64 jewel    = 7;/*砖石数量*/
+	 int64 ticket   = 8;/*奖券数量*/
+
+	/*其他币种*/
+	 int32 ext_php  = 9;/*给php填充，为1表示php查询操作金币后，立即解锁*/
+}
+
+message Score_t{
+	 RetCode ret    =  1;
+	 ActionType action = 2;
+	 int64 score    = 3;
+	 int32 win      = 4;
+	 int32 lose     = 5;
+	 int32 equ      = 6;
+	 int64 time     = 7;
+}
+
+message Request {
+     Head_t head = 1;
+     Lock_t lock = 2;
+     Coin_t coin = 3;    
+     Score_t score = 4; 
+}
+
+message Result {
+     Head_t head = 1;
+     Lock_t lock = 2;
+     Coin_t coin = 3;    
+     Score_t score = 4; 
+}
+
+message HeartBeat {
+	 string _svr_t  = 1;    /*server name*/
+	 int32 _svr_id  = 2;    /*server id*/
+	 int64  start_time = 3; /*server start time*/
+	 int64  update_time = 4;
+}
+
+
+message NullResult {
+
+}
+
+
+
+service ecs{
+	
+ rpc EcsRequest(Request) returns(Result) {
+    }
+   
+   rpc SendHeartBeat(HeartBeat) returns(NullResult) {
+   }
+
+}

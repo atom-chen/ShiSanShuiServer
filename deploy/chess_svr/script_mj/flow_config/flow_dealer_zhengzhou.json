@@ -1,0 +1,194 @@
+{
+    "name": "dealer root",
+    "control_type": "selector",
+    "child": [
+        {
+            "name": "case player enter",
+            "case": "enter",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "dealer do player enter",
+                    "control_type": "step",
+                    "do_script": "flow_dealer.do_player_enter"
+                },
+                {
+                    "name": "dealer check_to_start_game",
+                    "control_type": "step",
+                    "do_script": "flow_dealer.check_to_start_game"
+                }
+            ]
+        },
+        {
+            "name": "dealer tick",
+            "case": "timeout",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "dealer_stage_choose",
+                    "control_type": "step",
+                    "do_script": "flow_dealer.check_is_all_player_free"
+                },
+                {
+                    "name": "selector dealer_stage_choose",
+                    "control_type": "selector",
+                    "select_type": "step_return",
+                    "step_name": "flow_dealer.dealer_stage_choose",
+                    "child": [
+                        {
+                            "name": "case prepare",
+                            "case": "prepare",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "dealer check_to_start_game",
+                                    "control_type": "step",
+                                    "do_script": "flow_dealer.check_to_start_game"
+                                },
+                                {
+                                    "name": "dealer start_game",
+                                    "control_type": "step",
+                                    "do_script": "flow_dealer.start_game"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "case xiapao",
+                            "case": "xiapao",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "selector check_is_xiapao_end",
+                                    "control_type": "selector",
+                                    "select_type": "step_return",
+                                    "step_name": "flow_dealer.check_is_xiapao_end",
+                                    "child": [
+                                        {
+                                            "case": "no",
+                                            "name": "deal call xiapao",
+                                            "control_type": "step",
+                                            "do_script": "flow_dealer.call_player_xiapao"
+                                        },
+                                        {
+                                            "case": "yes",
+                                            "control_type": "step",
+                                            "do_script": "flow_dealer.do_xiapao_end"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "case banker",
+                            "case": "banker",
+                            "control_type": "step",
+                            "do_script": "flow_dealer.choose_banker"
+                        },
+                        {
+                            "name": "case deal",
+                            "case": "deal",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "deal_do_deal",
+                                    "control_type": "step",
+                                    "do_script": "flow_dealer.do_deal"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "case laizi",
+                            "case": "laizi",
+                            "control_type": "step",
+                            "do_script": "flow_dealer.do_laizi"
+                        },
+                        {
+                            "name": "case ci",
+                            "case": "ci",
+                            "control_type": "step",
+                            "do_script": "flow_dealer.do_ci"
+                        },
+                        {
+                            "name": "case round",
+                            "case": "round",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "judge_curr_round",
+                                    "control_type": "step",
+                                    "do_script": "flow_dealer.judge_curr_round"
+                                },
+                                {
+                                    "name": "select round_is_round_end result",
+                                    "control_type": "selector",
+                                    "select_type": "step_return",
+                                    "step_name": "flow_dealer.round_is_round_end",
+                                    "child": [
+                                        {
+                                            "name": "selector_isround_end_true",
+                                            "case": "yes",
+                                            "control_type": "sequence",
+                                            "child": [
+                                                {
+                                                    "name": "mainlogic_end",
+                                                    "control_type": "step",
+                                                    "do_script": "flow_dealer.mainlogic_end"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "selector_isround_end_false",
+                                            "case": "no",
+                                            "control_type": "sequence",
+                                            "child": [
+                                                {
+                                                    "name": "round_do_next_round",
+                                                    "control_type": "step",
+                                                    "do_script": "flow_dealer.round_do_next_round"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "case reward",
+                            "case": "reward",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do_thisgame_reward",
+                                    "control_type": "step",
+                                    "do_script": "flow_dealer.do_thisgame_reward"
+                                },
+                                {
+                                    "name": "notify_game_reward",
+                                    "control_type": "step",
+                                    "do_script": "flow_dealer.notify_game_reward"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "case end",
+                            "case": "gameend",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do_thisgame_end",
+                                    "control_type": "step",
+                                    "do_script": "flow_dealer.do_thisgame_end"
+                                },
+                                {
+                                    "name": "prepare_next",
+                                    "control_type": "step",
+                                    "do_script": "flow_dealer.prepare_next"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

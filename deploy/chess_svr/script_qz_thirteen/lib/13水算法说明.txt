@@ -1,0 +1,100 @@
+十三水算法说明：
+
+=====================================================
+======推荐牌型算法文件：lib_recomand.lua=============
+
+####1. 获取推荐牌型统一对外接口
+function libRecomand:SetRecommandLaizi(cards)
+	local recommend_cards = {}
+	...
+	return recommend_cards
+end
+
+---参数说明：
+参数cards: 为玩家手牌(包括鬼牌), 共13张(理论最少要13张，当然大于13张也可以，但绝不能低于13张)
+格式：cards = {0x02,0x03,0x04,0x05,0x06,...} --当然对应的十进制也可以
+---返回值：recommend_cards = 
+{
+    {
+        Cards={0x02,0x03,0x04,0x05,0x06,...},  --1-5是后墩 6-10是中墩 11-13是前墩
+        Types={1,2,3},      --依次为尾中前牌型
+        Values={
+            {1,2,3,4,5},    --尾墩牌的点数
+            {1,2,3,4,5},    --中墩牌的点数
+            {1,2,3}         --前墩牌的点数
+        }
+    }, 
+    ....  --这里可以有多个
+}
+
+
+####2.主要算法说明
+<==1>
+--这个算法主要就是获取 对子/3条/4条/5同
+function libRecomand:Get_Same_Poker(cards, count)
+end
+---参数说明：
+参数cards：玩家手上除了癞子牌剩余的牌格式：cards = {0x02,0x03,0x04,0x05,0x06,...} --当然对应的十进制也可以
+参数count：找count==n张相同的牌, 只有等于这个条件成立，大于或小于都不成立。
+			如count==5 则找5同；count==4则找4条，如果只有5同而没有4条是不会从5同中找4条的,其他的类推。
+---返回值说明：
+返回参数1：true or false  true表示找到 false没有
+返回参数2：保存找到的牌数据  格式如下:
+{
+	{1,2,3,4},	--牌的数量跟传进来的count一致
+	....
+}
+
+
+<==2>
+function libRecomand:Get_Pt_xxx(cards, nLaziCount) 所有算法输入参数及返回值格式一样
+---参数说明：
+参数cards：玩家手上除了癞子牌剩余的牌格式：cards = {0x02,0x03,0x04,0x05,0x06,...} --当然对应的十进制也可以
+参数nLaziCount：剩余的癞子数量 >=0
+---返回值说明
+bFind：是否找到相应的牌型 false没有 true有
+result：保存找到的牌型牌数据 格式如下
+result = 
+{
+    {
+        card = {0x02,0x03,0x04,...}, --最多5张 最少2张
+        index = {[2]=2, [4]=4 } --[位置]=位置 保存癞子牌在card的位置,遍历的时候不能用ipars来遍历
+    },
+    ....这里可以有多个
+}
+
+
+
+======基本功能算法文件：lib_normal_card_logic.lua=============
+
+--#####1.比牌：先比牌型type,再比牌值values
+--(1)个人用来判断相公 (前墩和中墩比 中墩和尾墩比 前墩和尾墩比 都可以)
+--(2)两个人比牌比大小 (前墩和前墩比 中墩和中墩比  尾墩和尾墩比)
+function LibNormalCardLogic:CompareCardsLaizi(type1, type2, values1, values2)
+    ...
+    return 0
+end
+---参数说明：把一副牌分成两部分--type,values, 可以用下面LibNormalCardLogic:GetCardTypeByLaizi(cards)这个函数获取
+参数type1：    牌型1
+参数type2：    牌型2
+参数values1：  牌型1对应那副牌相应的点数
+参数values2：  牌型2对应那副牌相应的点数
+---返回值:
+0表示相等
+<0表示小于
+>0表示大于
+
+
+--#####2.根据牌墩 来获取其最大的牌型type及相应的牌值values， cards数量只能是5张或3张
+function LibNormalCardLogic:GetCardTypeByLaizi(cards)
+    ...
+    return bSuc, cardType, values
+end
+
+---参数说明：
+参数cards：玩家相应牌墩(5张或3张,包括癞子牌)格式：cards = {0x02,0x03,0x04,...} --当然对应的十进制也可以
+--返回值:
+参数bSuc:true表示成功 false表示失败
+参数cardType： 这副牌能组成的最大牌型
+参数values：保存最大牌型相应的牌值。
+如：cards = {0x38,0x28,0x18,0x08,0x5f}  这副牌能组成最大的牌型是5同，对应的牌值values = {8,8,8,8,8}

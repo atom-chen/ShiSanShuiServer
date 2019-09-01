@@ -1,0 +1,34 @@
+-- 错误
+ESUCCESS                         = 0x0
+-- 成功
+ERROR                    = 0x01
+-- 错误类型
+ERROR_BANKER          = 0x0a
+
+ERROR_INTERNAL          = 9000
+
+ERROR_PARAM_ERR = 10000 -- 参数错误
+
+ERROR_PLAYER_NOT_HAVE_THISCARD = 10001
+ERROR_PLAYER_TING_PLAY_OTHERCARD = 10002
+
+ERROR_PLAYER_CARDGROUP = 10003 --  玩家手牌错误
+
+-- change card
+ERROR_CHANGECARD_NEEDSAME = 10004       -- 换张不符合规则
+
+-- 出牌
+ERROR_PLAY_COLLECT = 10005       -- 出牌不符合规则
+ERROR_PLAY_FLOWER = 10006       -- 出牌不能是花
+ERROR_PLAY_GOLD = 10007       -- 出牌不能是金
+
+-- 定缺
+ERROR_CONFIRMMISS_CONFIRMED = 10010   -- 已经定缺
+ERROR_CONFIRMMISS_MISSTYPE = 10011  -- 定缺牌型错误
+
+
+-- 打牌过程中的错误定义
+ERROR_BLOCK_COLLECT = 10021 -- 吃操作失败
+ERROR_BLOCK_TRIPLET= 10022 -- 吃操作失败
+ERROR_BLOCK_QUADRUPLET = 10023  -- 杠失败
+ERROR_BLOCK_WIN = 10024 -- 胡失败

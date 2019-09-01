@@ -1,0 +1,9 @@
+-- 返回 STEP_SUCCEED 流程继续
+-- 返回 STEP_FAILED 流程终止
+local function logic_STEP_NAME(OBJECT_NAME, MESSAGE_NAME)
+    LOG_DEBUG("Run LogicStep STEP_NAME")
+    return STEP_SUCCEED
+end
+
+
+return logic_STEP_NAME

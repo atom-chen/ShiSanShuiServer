@@ -1,0 +1,30 @@
+﻿--地方麻将 宏定义                                         			GID
+
+
+GAME_STYLE_CHENGDU              = 0X04    -- 地方麻将:成都麻将                  7        
+
+
+GAME_STYLE_ZHENGZHOU            = 0x11    -- 地方麻将:郑州麻将17
+GAME_STYLE_ZHUMADIAN            = 0x12    -- 地方麻将:驻马店麻将18
+GAME_STYLE_LUOYANG              = 0x13    -- 地方麻将:洛阳麻将19
+
+GAME_STYLE_SHIJIAZHUANG         = 0x21    -- 地方麻将:石家庄麻将33
+GAME_STYLE_BAZHOU               = 0x22    -- 地方麻将:霸州麻将34
+GAME_STYLE_LANGFANG             = 0x23    -- 地方麻将:廊坊麻将35
+GAME_STYLE_FUZHOU               = 0x24    -- 地方麻将:福州麻将36
+
+GAME_STYLE_QUANZHOU             = 0x25    -- 地方麻将:泉州州麻将37
+GAME_STYLE_XIAMEN               = 0x26    -- 地方麻将: 厦门麻将38
+GAME_STYLE_ZHANGZHOU            = 0x27    -- 地方麻将:漳州麻将39
+
+
+GAME_STYLE_TANGSHAN        	=  0x28	   -- 地方麻将:唐山麻将40
+
+
+
+
+
+--游戏场分类
+MONEY_MODE_SCORE                = 1       --积分场
+MONEY_MODE_MONEY                = 2       -- 货币场
+ROOM_MODE_SCORE                 = 11      -- 房卡场

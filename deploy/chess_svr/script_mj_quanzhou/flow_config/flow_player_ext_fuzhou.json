@@ -1,0 +1,143 @@
+{
+    "name": "player root ext",
+    "x": 348,
+    "y": 172,
+    "control_type": "selector",
+    "child": [
+        {
+            "case": "enter",
+            "name": "player re enter",
+            "x": 545,
+            "y": 239,
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "player_re_enter",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.player_re_enter"
+                },
+                {
+                    "name": "player send all table info",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.send_all_table_info"
+                }
+            ]
+        },
+        {
+            "case": "offline",
+            "name": "player offline",
+            "x": 545,
+            "y": 239,
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "do_player_offline",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.do_player_offline"
+                }
+            ]
+        },
+        {
+            "case": "autoplay",
+            "name": "player offline",
+            "x": 545,
+            "y": 239,
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "do_player_autoplay",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.do_player_autoplay"
+                }
+            ]
+        },
+        {
+            "case": "leave",
+            "name": "player leave",
+            "x": 545,
+            "y": 239,
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "do_player_leave",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.do_player_leave"
+                }
+            ]
+        },
+        {
+            "case": "client_exit",
+            "name": "player client_exit",
+            "x": 545,
+            "y": 239,
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "do_player_client_exit",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.do_player_client_exit"
+                }
+            ]
+        },
+        {
+            "case": "svr_refresh",
+            "name": "player svr_refresh",
+            "x": 545,
+            "y": 239,
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "do_player_leave",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.do_svr_refresh"
+                }
+            ]
+        },
+        {
+            "case": "player_info",
+            "name": "player player_info",
+            "x": 545,
+            "y": 239,
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "do_get_player_info",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.do_get_player_info"
+                }
+            ]
+        },
+        {
+            "case": "chat",
+            "name": "player chat",
+            "x": 545,
+            "y": 239,
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "do_chat",
+                    "x": 348,
+                    "y": 172,
+                    "control_type": "step",
+                    "do_script": "flow_player_ext.do_chat"
+                }
+            ]
+        }
+    ]
+}

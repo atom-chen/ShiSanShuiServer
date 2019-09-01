@@ -1,0 +1,146 @@
+{
+    "name": "player root",
+    "control_type": "selector",
+    "child": [
+        {
+            "case": "call_ready",
+            "select_type": "event",
+            "name": "dealer ask player ready",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify player can ready",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_ready"
+                },
+                {
+                    "name": "wait player ready",
+                    "control_type": "selector",
+                    "child": [
+                        {
+                            "name": "ready",
+                            "case": "ready",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do player ready",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.do_player_ready"
+                                },
+                                {
+                                    "name": "do player ready",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_all_player_ready"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "timeout",
+                            "case": "timeout",
+                            "select_type": "event",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_ready_timeout"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "case": "call_mult",
+            "select_type": "event",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify player mult",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_mult"
+                },
+                {
+                    "name": "wait player mult",
+                    "control_type": "selector",
+                    "child": [
+                        {
+                            "name": "player mult",
+                            "case": "mult",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do player mult",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.do_player_mult"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "timeout",
+                            "case": "timeout",
+                            "select_type": "event",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_mult_timeout"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "case": "call_choose_cardtype",
+            "select_type": "event",
+            "name": "dealer ask player choose card type",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify player can choose card type",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_choose_cardtype"
+                },
+                {
+                    "name": "wait player choose card type",
+                    "control_type": "selector",
+                    "child": [
+                        {
+                            "name": "choose_normal",
+                            "case": "choose_normal",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do player choose card type",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.do_player_choose_normal_cardtype"
+                                },
+                                {
+                                    "name": "do player choose card type",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_all_player_choose_cardtype"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "choose_sp",
+                            "case": "choose_sp",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do player choose special card type",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.do_player_choose_sp_cardtype"
+                                },
+                                {
+                                    "name": "do player choose card type",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_all_player_choose_cardtype"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "timeout",
+                            "case": "timeout",
+                            "select_type": "event",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_choose_cardtype_timeout"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

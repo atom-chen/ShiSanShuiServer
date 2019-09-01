@@ -1,0 +1,4 @@
+local StringEncoding = {
+}
+
+return StringEncoding

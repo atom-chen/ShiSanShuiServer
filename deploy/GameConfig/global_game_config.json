@@ -1,0 +1,188 @@
+{
+    "1": {
+        "GameName": "河南麻将",
+        "ConfigFile": "game_config_1.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+            "appid":3,
+            "LuaBasePath": "script_mj",
+            "_gsc": "flow_config.game_cfg_zhengzhou"
+        }
+    },
+	"2": {
+        "GameName": "洛阳麻将",
+        "ConfigFile": "game_config_2.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+            "appid":3,
+            "LuaBasePath": "script_mj",
+            "_gsc": "flow_config.game_cfg_zhengzhou"
+        }
+    },
+	  "3": {
+        "GameName": "驻马店麻将",
+        "ConfigFile": "game_config_3.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+            "appid":3,
+            "LuaBasePath": "script_mj",
+            "_gsc": "flow_config.game_cfg_zhengzhou"
+        }
+    },
+    "4": {
+        "GameName": "河南麻将",
+        "ConfigFile": "game_config_4.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_hnmj",
+            "ScoreTbl": "dstars.score_hnmj",
+            "appid":1,
+            "LuaBasePath": "zzmj_script",
+            "_gsc": "flow_config.game_cfg_zhengzhou"
+        }
+    },
+    "5": {
+        "GameName": "驻马店麻将",
+        "ConfigFile": "game_config_5.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+            "LuaBasePath": "zzmj_script",
+            "_gsc": "flow_config.game_cfg_zhengzhou"
+        }
+    },
+    "6": {
+        "GameName": "洛阳杠次麻将",
+        "ConfigFile": "game_config_6.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+            "LuaBasePath": "zzmj_script",
+            "_gsc": "flow_config.game_cfg_zhengzhou"
+        }
+    },
+    "7": {
+        "GameName": "红中麻将",
+        "ConfigFile": "game_config_7.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_hzmj",
+            "ScoreTbl": "dstars.score_hzmj",
+            "LuaBasePath": "hzmj_script",
+            "_gsc": "flow_config.game_cfg_hongzhong"
+        }
+    },
+    "11": {
+        "GameName": "十三水",
+        "ConfigFile": "game_config_11.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_b",
+            "appid":4,
+            "LuaBasePath": "script_thirteen",
+            "_gsc": "flow_config.game_cfg_thirteen"
+        }
+    },
+    "12": {
+        "GameName": "石家庄麻将",
+        "ConfigFile": "game_config_12.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+			"appid":5,
+            "LuaBasePath": "script_mj_hebei",
+            "_gsc": "flow_config.game_cfg"
+        }
+    },
+	"13": {
+        "GameName": "霸州麻将",
+        "ConfigFile": "game_config_13.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+			"appid":5,
+            "LuaBasePath": "script_mj_hebei",
+            "_gsc": "flow_config.game_cfg"
+        }
+    },
+	"14": {
+        "GameName": "廊坊麻将",
+        "ConfigFile": "game_config_14.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+			"appid":5,
+            "LuaBasePath": "script_mj_hebei",
+            "_gsc": "flow_config.game_cfg"
+        }
+    },
+    "18": {
+        "GameName": "福州麻将",
+        "ConfigFile": "game_config_18.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+            "appid":4,
+            "LuaBasePath": "script_mj_fuzhou",
+            "_gsc": "flow_config.game_cfg_fuzhou"
+        }
+    },
+	"19": {
+        "GameName": "泉州十三水",
+        "ConfigFile": "game_config_19.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_b",
+            "appid":6,
+            "LuaBasePath": "script_qz_thirteen",
+            "_gsc": "flow_config.game_cfg_thirteen"
+        }
+    },
+    "20": {
+        "GameName": "泉州麻将",
+        "ConfigFile": "game_config_20.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+            "appid":6,
+            "LuaBasePath": "script_mj_quanzhou",
+            "_gsc": "flow_config.game_cfg_quanzhou"
+        }
+    },
+    "22": {
+        "GameName": "莆仙十三水",
+        "ConfigFile": "game_config_22.json",
+        "__Base": {
+            "CoinTbl": "dstar.coin_a",
+            "ScoreTbl": "dstar.score_a",
+            "GameRidTbl": "dstar.gr",
+            "appid":7,
+            "LuaBasePath": "script_thirteen_puxian",
+            "_gsc": "flow_config.game_cfg_thirteen"
+        }
+    },
+    "23": {
+        "GameName": "唐山麻将",
+        "ConfigFile": "game_config_23.json",
+        "__Base": {
+            "CoinTbl": "dstars.coin_a",
+            "ScoreTbl": "dstars.score_a",
+            "appid":5,
+            "LuaBasePath": "script_mj_hebei",
+            "_gsc": "flow_config.game_cfg"
+        }
+    },
+    "25": {
+        "GameName": "游侠十三水",
+        "ConfigFile": "game_config_22.json",
+        "__Base": {
+            "CoinTbl": "dstar.coin_a",
+            "ScoreTbl": "dstar.score_a",
+            "GameRidTbl": "dstar.gr",
+            "appid":7,
+            "LuaBasePath": "script_thirteen_puxian",
+            "_gsc": "flow_config.game_cfg_thirteen"
+        }
+    }
+}

@@ -1,0 +1,70 @@
+{
+
+    "__Level":
+	{
+        "level1": 
+		{
+	    "ScoreRate": 1,
+            "CoinRate": 100,
+            "CoinFee": 10,
+            "CoinLow": 1000,
+            "CoinUpper": 50000
+        },
+		 "level2": 
+		{
+	    "ScoreRate": 1,
+            "CoinRate": 500,
+            "CoinFee": 600,
+            "CoinLow": 20000,
+            "CoinUpper": 500000
+        },
+		 "level3": 
+		{
+	    "ScoreRate": 1,
+            "CoinRate": 2000,
+            "CoinFee": 1500,
+            "CoinLow": 100000,
+            "CoinUpper": 5000000
+        },
+		 "level4": 
+		{
+	    "ScoreRate": 1,
+            "CoinRate": 10000,
+            "CoinFee": 700,
+            "CoinLow": 600000,
+            "CoinUpper": 50000000
+        },
+		 "level5": 
+		{
+	    "ScoreRate": 1,
+            "CoinRate": 100000,
+            "CoinFee": 5000,
+            "CoinLow": 6000000,
+            "CoinUpper": -1
+        },
+		 "level6": 
+		{
+	    "ScoreRate": 1,
+            "CoinRate": 1000000,
+            "CoinFee": 30000,
+            "CoinLow": 60000000,
+            "CoinUpper": -1
+        }
+    },
+    "__Rule": 
+	{
+        "default":
+		{
+			"SeatCount":4,
+			"AllowEnterInGame":0,
+            "TimeForRobot": 10,
+            "GameCfg":
+            {
+                "nMoneyMode":2,
+                "RoomSetting_nGameStyle":33,
+                "RoomSetting_nChargeMode":0
+            }			
+        }
+    }
+}
+	

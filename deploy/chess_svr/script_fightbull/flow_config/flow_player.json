@@ -1,0 +1,49 @@
+{
+    "name": "player root",
+    "control_type": "selector",
+    "child": [
+        {
+            "case": "call_ready",
+            "select_type": "event",
+            "name": "dealer ask player ready",
+            "control_type": "sequence",
+            "child": [
+                {
+                    "name": "notify player can ready",
+                    "control_type": "step",
+                    "do_script": "flow_player.notify_player_ready"
+                },
+                {
+                    "name": "wait player ready",
+                    "control_type": "selector",
+                    "child": [
+                        {
+                            "name": "ready",
+                            "case": "ready",
+                            "control_type": "sequence",
+                            "child": [
+                                {
+                                    "name": "do player ready",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.do_player_ready"
+                                },
+                                {
+                                    "name": "do player ready",
+                                    "control_type": "step",
+                                    "do_script": "flow_player.notify_all_player_ready"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "timeout",
+                            "case": "timeout",
+                            "select_type": "event",
+                            "control_type": "step",
+                            "do_script": "flow_player.do_player_ready_timeout"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
