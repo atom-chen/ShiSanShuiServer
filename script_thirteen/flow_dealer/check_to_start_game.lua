@@ -4,27 +4,27 @@ local function logic_check_to_start_game(dealer, msg)
     --300秒不准备则清桌 字段在game_config_11.json中的ClearTableReadyTimeOut，==0表示不生效
     local bClearTable = dealer:IsCanClearTable()
     if bClearTable then
-        --dealer:SendClearTable()
-        --LOG_DEBUG("logic_check_to_start_game..clear table :%s", tostring(bClearTable))
-        --return STEP_FAILED 
+        dealer:SendClearTable()
+        LOG_DEBUG("logic_check_to_start_game..clear table :%s", tostring(bClearTable))
+        return STEP_FAILED 
     end
 
-    local readyCount = 0
-    for i=1,PLAYER_NUMBER do
-        local stPlayer = GGameState:GetPlayerByChair(i)
-        if stPlayer == nil then
-            break
-        end
-        if  stPlayer:GetPlayerStatus()  ==  PLAYER_STATUS_READY then
-            readyCount = readyCount + 1
-        end
-    end
-    --判断准备的人数是否和当前在桌子的人数一样多
-    if readyCount ~= GameCfg.nPlayerNum and bClearTable == false then
-        return STEP_FAILED
-    end
+    -- local readyCount = 0
+    -- for i=1,PLAYER_NUMBER do
+    --     local stPlayer = GGameState:GetPlayerByChair(i)
+    --     if stPlayer == nil then
+    --         break
+    --     end
+    --     if  stPlayer:GetPlayerStatus()  ==  PLAYER_STATUS_READY then
+    --         readyCount = readyCount + 1
+    --     end
+    -- end
+    -- --判断准备的人数是否和当前在桌子的人数一样多
+    -- if readyCount ~= GameCfg.nPlayerNum and bClearTable == false then
+    --     return STEP_FAILED
+    -- end
 
-    PLAYER_NUMBER = GameCfg.nPlayerNum
+    -- PLAYER_NUMBER = GameCfg.nPlayerNum
 
     local count = 0
     for i=1,PLAYER_NUMBER do

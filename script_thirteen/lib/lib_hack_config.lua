@@ -51,7 +51,6 @@ end
 
 function LibLoadConfig.HackGameCfg(str_gsc, _gid, cfgjson, gamejson)
     
-    PLAYER_NUMBER = GGameCfg.nPlayerNum
     --房卡配置
     cfgjson = cfgjson or {}
     if cfgjson ~= nil and cfgjson.cfg ~= nil then

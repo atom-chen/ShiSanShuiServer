@@ -36,11 +36,11 @@ end
 
 function CSMessage.NotifyExceptPlayer (fromPlayer, event, para, timeo)
     local chairID = fromPlayer:GetChairID()
-    -- LOG_DEBUG("NotifyExceptPlayer: event:%s, para:%s, from:%d, to:%d", event, vardump(para), chairID, 0);
+     --LOG_DEBUG("NotifyExceptPlayer: event:%s, para:%s, from:%d, to:%d", event, vardump(para), chairID, 0);
     for i=1, PLAYER_NUMBER do
         local stPlayer = stGameState:GetPlayerByChair(i)
         if i ~= chairID and stPlayer ~= nil then
-            -- LOG_DEBUG("==NotifyExceptPlayer: event:%s, para:%s, from:%d, to:%d", event, vardump(para), chairID, i);
+            --LOG_DEBUG("==NotifyExceptPlayer: event:%s, para:%s, from:%d, to:%d", event, vardump(para), chairID, i);
             CSMessage.NotifyOnePlayerTo(stPlayer, event, para, chairID, timeo)
         end
     end
@@ -75,13 +75,13 @@ end
 function CSMessage.NotifyPlayerEnterTo(stPlayerEnter, stPlayerTo)
     local para = stPlayerEnter:GetUserInfo()
     para.gid = GGameCfg._gid
-    -- LOG_DEBUG("GID=%d, cfg=%s", GGameCfg._gid, vardump(GGameCfg));
+     --LOG_DEBUG("GID=%d, cfg=%s", GGameCfg._gid, vardump(GGameCfg));
     CSMessage.NotifyOnePlayerTo(stPlayerTo, "enter", para, stPlayerEnter:GetChairID())
 end
 function CSMessage.NotifyPlayerEnterToAll(stPlayerEnter)
     local para = stPlayerEnter:GetUserInfo()
     para.gid = GGameCfg._gid
-    -- LOG_DEBUG("GID= 2 %d, cfg=%s", para.gid, vardump(para));
+     --LOG_DEBUG("GID= 2 %d, cfg=%s", para.gid, vardump(para));
     CSMessage.NotifyAllPlayer(stPlayerEnter, "enter", para);
 end
 
