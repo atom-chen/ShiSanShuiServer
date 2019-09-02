@@ -92,9 +92,11 @@ host=dstars&uri=/chess/1&msgid=http_req@@@@
 						"rounds" : 8,        --局数(这个字段必须有，且名字不能改)
 						"nGhostAdd" : 0,     --加鬼牌(0不加，1加)
 						"nColorAdd" : 0,     --加色(0不加，1加一色，2加二色)
-						"nBuyCode": 0,       --买码(0不买，1买)
+						"nBuyCode": 0,       --买码(0不买，大于0 是选择的码牌值)(新修改的协议)
 						"nWaterBanker": 0,    --水庄：0不是 1是
-						"nMaxMult": 1    	  --水庄，闲家最大倍数
+						"nMaxMult": 1,    	  --水庄，闲家最大倍数
+						"nChooseCardTypeTimeOut":300       --摆牌超时时间（新加的协议）
+						"nReadyTimeOut":300       --准备时间（新加的协议）					
                     },
                     "clog": {},
                     "cost": "2",
@@ -108,6 +110,9 @@ host=dstars&uri=/chess/1&msgid=http_req@@@@
                     "status": "0",
                     "uid": "1001",			--房主uid
                     "uri": "/chess/1"
+                },
+                "ability": {
+                    "need_recommand": 1
                 }
             }
         }
@@ -199,7 +204,7 @@ host=dstars&uri=/chess/1&msgid=http_req@@@@
     "_cmd": "ask_ready",
     "_st": "nti",
 	"_src" : "p1",
-    "timeo": 10,    ---- ready超时时间，-1表示永不超时
+    "timeo": -1,    ---- ready超时时间，-1表示永不超时
     "_para": {
     }
 }
@@ -347,7 +352,7 @@ nti:
    "_cmd" : "ask_choose",
    "_src" : "p1",
    "_st" : "nti",
-   "timeo" : 30,	-- 摆牌超时时间
+   "timeo" : 10,	-- 摆牌超时时间
    "_para" : {},
 }
 
